@@ -29,6 +29,11 @@
     </pluginRepositories>
 
     <dependencies>
+        <dependency>
+            <groupId>io.github.microutils</groupId>
+            <artifactId>kotlin-logging</artifactId>
+            <version>1.12.5</version>
+        </dependency>
         <!-- Jetbrains exposed dependency -->
         <dependency>
             <groupId>org.jetbrains.exposed</groupId>
