@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6649612-81e0-4e03-90ea-ac7854770b93" name="Changes" comment="Add this for my health tracker app after adding some dependencies">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/config/DbConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/domain/db/Users.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/utils/DBUtilities.kt" afterDir="false" />
+    <list default="true" id="a6649612-81e0-4e03-90ea-ac7854770b93" name="Changes" comment="Add this for my health tracker app after connecting heroku directly">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie.setu/App.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/App.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie.setu/domain/repository/UserDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/domain/repository/UserDAO.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -195,7 +190,7 @@
       <workItem from="1664877411396" duration="36217000" />
       <workItem from="1665583667411" duration="3059000" />
       <workItem from="1665710056588" duration="2124000" />
-      <workItem from="1665743104316" duration="8692000" />
+      <workItem from="1665743104316" duration="9691000" />
     </task>
     <task id="LOCAL-00001" summary="ADD this for my health tracker app">
       <created>1665425266086</created>
@@ -225,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665950040034</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add this for my health tracker app after connecting heroku directly">
+      <created>1665953319508</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1665953319508</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -259,6 +261,7 @@
     <MESSAGE value="ADD this for my health tracker app" />
     <MESSAGE value="Add this for my health tracker app" />
     <MESSAGE value="Add this for my health tracker app after adding some dependencies" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add this for my health tracker app after adding some dependencies" />
+    <MESSAGE value="Add this for my health tracker app after connecting heroku directly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add this for my health tracker app after connecting heroku directly" />
   </component>
 </project>
