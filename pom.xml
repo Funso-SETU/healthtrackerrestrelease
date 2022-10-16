@@ -5,7 +5,7 @@
 
     <groupId>ie.setu</groupId>
     <artifactId>healthtrackerrest</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>ie.setu healthtrackerrest</name>
@@ -14,8 +14,19 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.version>1.7.0-RC2</kotlin.version>
         <kotlin.code.style>official</kotlin.code.style>
-        <junit.version>4.13.1</junit.version>
+        <junit.jupiter.version>5.8.2</junit.jupiter.version>
+        <junit.platform.version>1.8.2</junit.platform.version>
+        <dokka.version>1.7.20</dokka.version>
     </properties>
+
+    <!-- Location of the Maven Plugin for Dokka -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jcenter</id>
+            <name>JCenter</name>
+            <url>https://jcenter.bintray.com/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <dependencies>
         <dependency>
@@ -29,29 +40,38 @@
             <version>${kotlin.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- Adding JUnit 5 dependency -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- Adding Javalin dependency -->
         <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>${junit.platform.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- removing the following 3 dependencies when adding javalin bundle for Swagger docs-->
+        <!-- Adding Javalin dependency -->
+        <!--dependency>
             <groupId>io.javalin</groupId>
             <artifactId>javalin</artifactId>
             <version>4.6.1</version>
-        </dependency>
+        </dependency-->
         <!-- These Logging Dependencies are required; warning appears otherwise when running -->
-        <dependency>
+        <!--dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>2.0.0-alpha7</version>
-        </dependency>
-        <dependency>
+        </dependency-->
+        <!--dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>2.0.0-alpha7</version>
-        </dependency>
+        </dependency-->
+
         <!-- json dependency for localhost running -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -64,11 +84,53 @@
             <artifactId>jackson-module-kotlin</artifactId>
             <version>2.13.3</version>
         </dependency>
-        <!-- json dependency for serialising json to objects -->
+        <!-- Jetbrains exposed dependency -->
         <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-kotlin</artifactId>
+            <groupId>org.jetbrains.exposed</groupId>
+            <artifactId>exposed</artifactId>
+            <version>0.17.14</version>
+        </dependency>
+        <!-- postgres driver -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.4.0</version>
+        </dependency>
+        <!-- kotlin logging -->
+        <dependency>
+            <groupId>io.github.microutils</groupId>
+            <artifactId>kotlin-logging</artifactId>
+            <version>1.12.5</version>
+        </dependency>
+        <!-- used bundle to enable openapi swagger documentation -->
+        <dependency>
+            <groupId>io.javalin</groupId>
+            <artifactId>javalin-bundle</artifactId>
+            <version>4.6.1</version>
+        </dependency>
+        <!-- json dependency for serialising joda date time -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-joda</artifactId>
             <version>2.13.3</version>
+        </dependency>
+        <!-- dependencies for functional/integration testing -->
+        <dependency>
+            <groupId>com.konghq</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>3.13.11</version>
+            <classifier>standalone</classifier>
+        </dependency>
+        <!-- adding Vue -->
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>vue</artifactId>
+            <version>2.6.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>axios</artifactId>
+            <version>0.19.2</version>
         </dependency>
     </dependencies>
 
@@ -94,6 +156,71 @@
                         <phase>test-compile</phase>
                         <goals>
                             <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Heroku assembly plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <!-- This tells Maven to include all dependencies -->
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>ie.setu.AppKt</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!-- Heroku SDK plugin -->
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>3.0.4</version>
+                <configuration>
+                    <jdkVersion>1.8</jdkVersion>
+                    <appName>health-tracker-20096225</appName>
+                    <processTypes>
+                        <!-- Tell Heroku how to launch your application -->
+                        <web>java -jar ./target/healthtrackerrest-1.0-jar-with-dependencies.jar</web>
+                    </processTypes>
+                </configuration>
+            </plugin>
+            <!-- surefire plugin MOJO - for testing during maven lifecycle-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <includes>
+                        <include>Test*</include>
+                        <include>*Test</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <!-- Maven Plugin for Dokka - basic configuration -->
+            <plugin>
+                <groupId>org.jetbrains.dokka</groupId>
+                <artifactId>dokka-maven-plugin</artifactId>
+                <version>${dokka.version}</version>
+                <executions>
+                    <execution>
+                        <phase>pre-site</phase>
+                        <goals>
+                            <goal>dokka</goal>
                         </goals>
                     </execution>
                 </executions>

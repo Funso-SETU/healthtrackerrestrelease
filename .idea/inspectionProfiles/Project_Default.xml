@@ -1,0 +1,19 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="MavenPackageUpdate" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="excludeList">
+        <list>
+          <option value="org.jetbrains.kotlin:kotlin-stdlib" />
+          <option value="org.jetbrains.kotlin:kotlin-test-junit" />
+          <option value="junit:junit" />
+          <option value="org.slf4j:slf4j-api" />
+          <option value="com.fasterxml.jackson.module:jackson-module-kotlin" />
+          <option value="com.fasterxml.jackson.core:jackson-databind" />
+          <option value="org.slf4j:slf4j-simple" />
+          <option value="io.javalin:javalin" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
