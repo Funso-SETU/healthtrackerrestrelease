@@ -22,6 +22,8 @@ class JavalinConfig {
             Integer.parseInt(herokuPort)
         } else 7000
     }
+
+
     private fun registerRoutes(app: Javalin) {
         app.routes {
             path("/api/users") {
