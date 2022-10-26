@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6649612-81e0-4e03-90ea-ac7854770b93" name="Changes" comment="Add this for my health tracker app after connecting heroku directly">
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/helpers/Fixtures.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/repository/UserDAOTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/domain/Activity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/domain/db/Activities.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/domain/repository/ActivityDAO.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie.setu/config/JavalinConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/config/JavalinConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie.setu/controllers/HealthTrackerController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/controllers/HealthTrackerController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie.setu/utils/DBUtilities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/utils/DBUtilities.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,8 +34,8 @@
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
       <GitPushTagMode>
-        <option name="argument" value="--follow-tags" />
-        <option name="title" value="Current Branch" />
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
       </GitPushTagMode>
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -198,7 +202,7 @@
       <workItem from="1665710056588" duration="2124000" />
       <workItem from="1665743104316" duration="20705000" />
       <workItem from="1666642983101" duration="3329000" />
-      <workItem from="1666798390160" duration="619000" />
+      <workItem from="1666798390160" duration="6107000" />
     </task>
     <task id="LOCAL-00001" summary="ADD this for my health tracker app">
       <created>1665425266086</created>
@@ -277,7 +281,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666634855866</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add this for my health tracker app after connecting heroku directly">
+      <created>1666799041094</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1666799041094</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -324,5 +335,8 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/healthtrackerrest$All_in_healthtrackerrest.ic" NAME="All in healthtrackerrest Coverage Results" MODIFIED="1666799111411" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
