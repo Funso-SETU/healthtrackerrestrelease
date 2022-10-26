@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6649612-81e0-4e03-90ea-ac7854770b93" name="Changes" comment="Add this for my health tracker app after connecting heroku directly">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/domain/Activity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/domain/db/Activities.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/domain/repository/ActivityDAO.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie.setu/config/JavalinConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/config/JavalinConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie.setu/controllers/HealthTrackerController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/controllers/HealthTrackerController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie.setu/utils/DBUtilities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/utils/DBUtilities.kt" afterDir="false" />
-    </list>
+    <list default="true" id="a6649612-81e0-4e03-90ea-ac7854770b93" name="Changes" comment="Add this for my health tracker app after creating activity,activities classes and DB and deploying to Heroku" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -202,7 +194,7 @@
       <workItem from="1665710056588" duration="2124000" />
       <workItem from="1665743104316" duration="20705000" />
       <workItem from="1666642983101" duration="3329000" />
-      <workItem from="1666798390160" duration="6107000" />
+      <workItem from="1666798390160" duration="6892000" />
     </task>
     <task id="LOCAL-00001" summary="ADD this for my health tracker app">
       <created>1665425266086</created>
@@ -288,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666799041094</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Add this for my health tracker app after creating activity,activities classes and DB and deploying to Heroku">
+      <created>1666807440596</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1666807440596</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,7 +322,8 @@
     <MESSAGE value="Add this for my health tracker app" />
     <MESSAGE value="Add this for my health tracker app after adding some dependencies" />
     <MESSAGE value="Add this for my health tracker app after connecting heroku directly" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add this for my health tracker app after connecting heroku directly" />
+    <MESSAGE value="Add this for my health tracker app after creating activity,activities classes and DB and deploying to Heroku" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add this for my health tracker app after creating activity,activities classes and DB and deploying to Heroku" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
