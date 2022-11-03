@@ -5,9 +5,12 @@ import com.fasterxml.jackson.datatype.joda.JodaModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import ie.setu.domain.Activity
+import ie.setu.domain.Item
 import ie.setu.domain.User
 import ie.setu.domain.repository.ActivityDAO
+import ie.setu.domain.repository.ItemDAO
 import ie.setu.domain.repository.UserDAO
+import ie.setu.utils.jsonToObject
 import io.javalin.http.Context
 import io.javalin.plugin.openapi.annotations.*
 
@@ -15,6 +18,7 @@ object HealthTrackerController {
 
     private val userDao = UserDAO()
     private val activityDAO = ActivityDAO()
+    private val itemDao = ItemDAO()
 
     @OpenApi(
         summary = "Get all users",
@@ -25,7 +29,33 @@ object HealthTrackerController {
         responses = [OpenApiResponse("200", [OpenApiContent(Array<User>::class)])]
     )
     fun getAllUsers(ctx: Context) {
-        ctx.json(userDao.getAll())
+        val users = userDao.getAll()
+        if (users.size != 0) {
+            ctx.status(200)
+        }
+        else{
+            ctx.status(404)
+        }
+        ctx.json(users)
+    }
+
+    @OpenApi(
+        summary = "Get all items",
+        operationId = "getAllItems",
+        tags = ["Item"],
+        path = "/api/items",
+        method = HttpMethod.GET,
+        responses = [OpenApiResponse("200", [OpenApiContent(Array<Item>::class)])]
+    )
+    fun getAllItems(ctx: Context) {
+        val items = itemDao.getAll()
+        if (items.size != 0) {
+            ctx.status(200)
+        }
+        else{
+            ctx.status(404)
+        }
+        ctx.json(items)
     }
 
     @OpenApi(
@@ -41,6 +71,27 @@ object HealthTrackerController {
         val user = userDao.findById(ctx.pathParam("user-id").toInt())
         if (user != null) {
             ctx.json(user)
+            ctx.status(200)
+        }
+        else{
+            ctx.status(404)
+        }
+    }
+
+
+    @OpenApi(
+        summary = "Get item by ID",
+        operationId = "getItemById",
+        tags = ["Item"],
+        path = "/api/items/{id}",
+        method = HttpMethod.GET,
+        pathParams = [OpenApiParam("id", Int::class, "The item ID")],
+        responses  = [OpenApiResponse("200", [OpenApiContent(User::class)])]
+    )
+    fun getItemById(ctx: Context) {
+        val item = itemDao.findById(ctx.pathParam("id").toInt())
+        if (item != null) {
+           ctx.json(item)
         }
     }
 
@@ -54,10 +105,13 @@ object HealthTrackerController {
         responses  = [OpenApiResponse("200")]
     )
     fun addUser(ctx: Context) {
-        val mapper = jacksonObjectMapper()
-        val user = mapper.readValue<User>(ctx.body())
-        userDao.save(user)
-        ctx.json(user)
+        val user : User = jsonToObject(ctx.body())
+        val userId = userDao.save(user)
+        if (userId != null) {
+            user.id = userId
+            ctx.json(user)
+            ctx.status(201)
+        }
     }
 
     @OpenApi(
@@ -73,6 +127,10 @@ object HealthTrackerController {
         val user = userDao.findByEmail(ctx.pathParam("email"))
         if (user != null) {
             ctx.json(user)
+            ctx.status(200)
+        }
+        else{
+            ctx.status(404)
         }
     }
 

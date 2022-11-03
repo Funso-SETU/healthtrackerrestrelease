@@ -37,7 +37,7 @@ class JavalinConfig {
                         get(HealthTrackerController::getActivitiesByUserId)
                     }
                 }
-                path("/email/{email}"){
+                path("/email/{email}"){ 
                     get(HealthTrackerController::getUserByEmail)
                 }
             }
@@ -45,6 +45,14 @@ class JavalinConfig {
                 get(HealthTrackerController::getAllActivities)
                 post(HealthTrackerController::addActivity)
             }
+
+            path("/api/items") {
+                get(HealthTrackerController::getAllItems)
+                path("{id}"){
+                    get(HealthTrackerController::getItemById)
+
+            }
         }
     }
+}
 }

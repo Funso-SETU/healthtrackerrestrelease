@@ -4,9 +4,9 @@ import ie.setu.utils.mapToUser
 import ie.setu.domain.db.Users
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
-//import org.jetbrains.exposed.sql.select
+
 import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.transactions.transaction
+
 class UserDAO {
     fun getAll() : ArrayList<User>{
         val userList: ArrayList<User> = arrayListOf()
@@ -27,12 +27,12 @@ class UserDAO {
     }
 
 
-    fun save(user: User){
-        transaction {
+    fun save(user: User) : Int?{
+        return transaction {
             Users.insert {
                 it[name] = user.name
                 it[email] = user.email
-            }
+            } get Users.id
         }
     }
 
@@ -54,8 +54,8 @@ class UserDAO {
         }
     }
 
-    fun update(id: Int, user: User){
-        transaction {
+    fun update(id: Int, user: User): Int{
+        return transaction {
             Users.update ({
                 Users.id eq id}) {
                 it[name] = user.name
