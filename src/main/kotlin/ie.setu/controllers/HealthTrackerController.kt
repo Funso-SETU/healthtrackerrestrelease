@@ -7,6 +7,7 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import ie.setu.domain.Activity
 import ie.setu.domain.Item
 import ie.setu.domain.User
+import ie.setu.domain.db.Items.id
 import ie.setu.domain.repository.ActivityDAO
 import ie.setu.domain.repository.ItemDAO
 import ie.setu.domain.repository.UserDAO
@@ -113,6 +114,24 @@ object HealthTrackerController {
             ctx.status(201)
         }
     }
+    @OpenApi(
+        summary = "Add Item",
+        operationId = "addItem",
+        tags = ["Item"],
+        path = "/api/items",
+        method = HttpMethod.POST,
+        pathParams = [OpenApiParam("id", Int::class, "The item ID")],
+        responses  = [OpenApiResponse("200")]
+    )
+    fun addItem(ctx: Context) {
+        val item : Item = jsonToObject(ctx.body())
+        val itemId = itemDao.save(item)
+        if (itemId != null) {
+            //item.id = itemId
+            ctx.json(item)
+            ctx.status(201)
+        }
+    }
 
     @OpenApi(
         summary = "Get user by Email",
@@ -148,6 +167,19 @@ object HealthTrackerController {
     }
 
     @OpenApi(
+        summary = "Delete item by ID",
+        operationId = "deleteItemById",
+        tags = ["User"],
+        path = "/api/items/{id}",
+        method = HttpMethod.DELETE,
+        pathParams = [OpenApiParam("id", Int::class, "The item ID")],
+        responses  = [OpenApiResponse("204")]
+    )
+    fun deleteItem(ctx: Context){
+        itemDao.delete(ctx.pathParam("id").toInt())
+    }
+
+    @OpenApi(
         summary = "Update user by ID",
         operationId = "updateUserById",
         tags = ["User"],
@@ -162,6 +194,23 @@ object HealthTrackerController {
         userDao.update(
             id = ctx.pathParam("user-id").toInt(),
             user=userUpdates)
+    }
+
+    @OpenApi(
+        summary = "Update item by ID",
+        operationId = "updateItemById",
+        tags = ["Item"],
+        path = "/api/items/{id}",
+        method = HttpMethod.PATCH,
+        pathParams = [OpenApiParam("id", Int::class, "The item ID")],
+        responses  = [OpenApiResponse("204")]
+    )
+    fun updateItem(ctx: Context){
+        val mapper = jacksonObjectMapper()
+        val itemUpdates = mapper.readValue<Item>(ctx.body())
+        itemDao.update(
+            id = ctx.pathParam("id").toInt(),
+            item=itemUpdates)
     }
 
     //--------------------------------------------------------------

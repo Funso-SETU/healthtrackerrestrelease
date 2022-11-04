@@ -57,8 +57,10 @@ class JavalinConfig {
 
             path("/api/items") {
                 get(HealthTrackerController::getAllItems)
+                post(HealthTrackerController::addItem)
                 path("{id}"){
                     get(HealthTrackerController::getItemById)
+                    delete(HealthTrackerController::deleteItem)
 
             }
         }

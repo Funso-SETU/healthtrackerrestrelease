@@ -1,7 +1,9 @@
 package ie.setu.domain.repository
 
 import ie.setu.domain.Item
+import ie.setu.domain.User
 import ie.setu.domain.db.Items
+import ie.setu.domain.db.Users
 import ie.setu.utils.mapToItem
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -55,7 +57,7 @@ class ItemDAO {
                 it[unitprice] = item.unitprice
                 it[dateadded] = item.dateadded
                 it[userid] = item.userid
-            }
+            }get Items.id
         }
     }
 
@@ -80,6 +82,27 @@ class ItemDAO {
     fun deleteByUserId (userId: Int): Int{
         return transaction{
             Items.deleteWhere { Items.userid eq userId }
+        }
+    }
+
+    fun delete(id: Int) {
+        return transaction{
+            Items.deleteWhere{
+                Items.id eq id
+            }
+        }
+    }
+
+    fun update(id: Int, item: Item): Int{
+        return transaction {
+            Items.update ({
+                Items.id eq id}) {
+                it[name] = item.name
+                it[unitprice] = item.unitprice
+                it[quantity] = item.quantity
+                it[dateadded] = item.dateadded
+                it[userid] = item.userid
+            }
         }
     }
 }
