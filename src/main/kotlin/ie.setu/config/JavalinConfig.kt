@@ -1,17 +1,24 @@
 package ie.setu.config
 
 import ie.setu.controllers.HealthTrackerController
+import ie.setu.utils.jsonObjectMapper
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
+import io.javalin.plugin.json.JavalinJackson
 
 class JavalinConfig {
 
     fun startJavalinService(): Javalin {
 
-        val app = Javalin.create().apply {
-            exception(Exception::class.java) { e, _ -> e.printStackTrace() }
-            error(404) { ctx -> ctx.json("404 - Not Found") }
-        }.start(getHerokuAssignedPort())
+        val app = Javalin.create{
+            it.defaultContentType = "application/json"
+            //added this jsonMapper for our integration tests - serialise objects to json
+            it.jsonMapper(JavalinJackson(jsonObjectMapper()))
+        }
+
+        app.exception(Exception::class.java) { e, _ -> e.printStackTrace() }
+        app.error(404) { ctx -> ctx.json("404 - Not Found") }
+        app.start(getHerokuAssignedPort())
 
         registerRoutes(app)
         return app
@@ -22,6 +29,8 @@ class JavalinConfig {
             Integer.parseInt(herokuPort)
         } else 7000
     }
+
+
 
 
     private fun registerRoutes(app: Javalin) {

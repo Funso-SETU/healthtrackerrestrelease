@@ -27,7 +27,7 @@ fun mapToItem(it: ResultRow) = Item(
     id = it[Items.id],
     name = it[Items.name],
     quantity = it[Items.quantity],
-    dateAdded = it[Items.dateAdded],
-    unitPrice = it[Items.unitPrice],
-    userId = it[Items.userId]
+    dateadded = it[Items.dateadded],
+    unitprice = it[Items.unitprice],
+    userid = it[Items.userid]
 )

@@ -119,18 +119,7 @@
             <artifactId>postgresql</artifactId>
             <version>42.4.0</version>
         </dependency>
-        <!-- kotlin logging -->
-        <dependency>
-            <groupId>io.github.microutils</groupId>
-            <artifactId>kotlin-logging</artifactId>
-            <version>1.12.5</version>
-        </dependency>
-        <!-- used bundle to enable openapi swagger documentation -->
-        <dependency>
-            <groupId>io.javalin</groupId>
-            <artifactId>javalin-bundle</artifactId>
-            <version>4.6.1</version>
-        </dependency>
+
         <!-- json dependency for serialising joda date time -->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
