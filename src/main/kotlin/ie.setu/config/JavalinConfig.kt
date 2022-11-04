@@ -44,6 +44,7 @@ class JavalinConfig {
                     patch(HealthTrackerController::updateUser)
                     path("activities"){
                         get(HealthTrackerController::getActivitiesByUserId)
+                        delete(HealthTrackerController::deleteActivityByUserId)
                     }
                 }
                 path("/email/{email}"){ 
@@ -53,7 +54,15 @@ class JavalinConfig {
             path("/api/activities") {
                 get(HealthTrackerController::getAllActivities)
                 post(HealthTrackerController::addActivity)
-            }
+                path("{activity-id}") {
+                    get(HealthTrackerController::getActivitiesByActivityId)
+                    delete(HealthTrackerController::deleteActivityByActivityId)
+                    patch(HealthTrackerController::updateActivity)
+            } 
+	    
+	    }
+	    
+	    
 
             path("/api/items") {
                 get(HealthTrackerController::getAllItems)
@@ -65,6 +74,17 @@ class JavalinConfig {
 
             }
         }
+    fun getConfiguredOpenApiPlugin() = OpenApiPlugin(
+        OpenApiOptions(
+            Info().apply {
+                title("Health Tracker App")
+                version("1.0")
+                description("Health Tracker API")
     }
-}
+        ).apply {
+            path("/swagger-docs") // endpoint for OpenAPI json
+            swagger(SwaggerOptions("/swagger-ui")) // endpoint for swagger-ui
+            reDoc(ReDocOptions("/redoc")) // endpoint for redoc
+        }
+    )
 }

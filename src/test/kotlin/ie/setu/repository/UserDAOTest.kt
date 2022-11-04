@@ -7,14 +7,13 @@ import ie.setu.domain.repository.UserDAO
 import ie.setu.helpers.nonExistingEmail
 import ie.setu.helpers.users
 import junit.framework.TestCase.assertEquals
-import org.eclipse.jetty.server.Authentication
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-//import org.wit.helpers.nonExistingEmail
+
 
 //retrieving some test data from Fixtures
 val user1 = users.get(0)
@@ -32,23 +31,7 @@ class UserDAOTest {
             Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver", user = "root", password = "")
         }
     }
-    @Nested
-    inner class CreateUsers{
-    @Test
-        fun `multiple users added to table can be retrieved successfully`() {
-        transaction {
-
-            //Arrange - create and populate table with three users
-            val userDAO = populateUserTable()
-
-            //Act & Assert
-            assertEquals(3, userDAO.getAll().size)
-            assertEquals(user1, userDAO.findById(user1.id))
-            assertEquals(user2, userDAO.findById(user2.id))
-            assertEquals(user3, userDAO.findById(user3.id))
-        }
-        }
-    }
+  
 
     @Nested
     inner class ReadUsers {
@@ -81,7 +64,11 @@ class UserDAOTest {
         fun `get user by id that exists, results in a correct user returned`() {
             transaction {
                 //Arrange - create and populate table with three users
-                val userDAO = populateUserTable()
+                SchemaUtils.create(Users)
+                val userDAO = UserDAO()
+                userDAO.save(user1)
+                userDAO.save(user2)
+                userDAO.save(user3)
 
                 //Act & Assert
                 assertEquals(null, userDAO.findById(4))
@@ -128,31 +115,19 @@ class UserDAOTest {
     }
 
     @Nested
-    inner class DeleteUsers{
-    @Test
-    fun `deleting a non-existant user in table results in no deletion`() {
-        transaction {
+    inner class CreateUsers {
+        @Test
+        fun `multiple users added to table can be retrieved successfully`() {
+            transaction {
 
-            //Arrange - create and populate table with three users
-            val userDAO = populateUserTable()
+                //Arrange - create and populate table with three users
+                val userDAO = populateUserTable()
 
-            //Act & Assert
-            assertEquals(3, userDAO.getAll().size)
-            userDAO.delete(4)
-            assertEquals(3, userDAO.getAll().size)
-        }
-    }
-    @Test
-    fun `deleting an existing user in table results in record being deleted`() {
-        transaction {
-
-            //Arrange - create and populate table with three users
-            val userDAO = populateUserTable()
-
-            //Act & Assert
-            assertEquals(3, userDAO.getAll().size)
-            userDAO.delete(user3.id)
-            assertEquals(2, userDAO.getAll().size)
+                //Act & Assert
+                assertEquals(3, userDAO.getAll().size)
+                assertEquals(user1, userDAO.findById(user1.id))
+                assertEquals(user2, userDAO.findById(user2.id))
+                assertEquals(user3, userDAO.findById(user3.id))
         }
     }
     }
@@ -190,6 +165,36 @@ class UserDAOTest {
         }
     }
 
+    @Nested
+    inner class DeleteUsers {
+        @Test
+        fun `deleting a non-existant user in table results in no deletion`() {
+            transaction {
+
+                //Arrange - create and populate table with three users
+                val userDAO = populateUserTable()
+
+                //Act & Assert
+                assertEquals(3, userDAO.getAll().size)
+                userDAO.delete(4)
+                assertEquals(3, userDAO.getAll().size)
+            }
+        }
+
+        @Test
+        fun `deleting an existing user in table results in record being deleted`() {
+            transaction {
+
+                //Arrange - create and populate table with three users
+                val userDAO = populateUserTable()
+
+                //Act & Assert
+                assertEquals(3, userDAO.getAll().size)
+                userDAO.delete(user3.id)
+                assertEquals(2, userDAO.getAll().size)
+            }
+        }
+    }
 
     internal fun populateUserTable(): UserDAO{
         SchemaUtils.create(Users)
