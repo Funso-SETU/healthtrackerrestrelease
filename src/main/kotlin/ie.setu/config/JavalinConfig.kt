@@ -61,6 +61,7 @@ class JavalinConfig {
                 path("{id}"){
                     get(HealthTrackerController::getItemById)
                     delete(HealthTrackerController::deleteItem)
+                    patch(HealthTrackerController::updateItem)
 
             }
         }
