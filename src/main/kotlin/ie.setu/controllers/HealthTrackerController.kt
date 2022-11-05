@@ -3,13 +3,13 @@ package ie.setu.controllers
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.joda.JodaModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 import ie.setu.domain.Activity
 import ie.setu.domain.Item
 import ie.setu.domain.User
-import ie.setu.domain.db.Items.id
+import ie.setu.domain.Measurement
 import ie.setu.domain.repository.ActivityDAO
 import ie.setu.domain.repository.ItemDAO
+import ie.setu.domain.repository.MeasurementDAO
 import ie.setu.domain.repository.UserDAO
 import ie.setu.utils.jsonToObject
 import io.javalin.http.Context
@@ -20,6 +20,7 @@ object HealthTrackerController {
     private val userDao = UserDAO()
     private val activityDAO = ActivityDAO()
     private val itemDao = ItemDAO()
+    private val measurementDao = MeasurementDAO()
 
     @OpenApi(
         summary = "Get all users",
@@ -57,6 +58,24 @@ object HealthTrackerController {
             ctx.status(404)
         }
         ctx.json(items)
+    }
+    @OpenApi(
+        summary = "Get all measurements",
+        operationId = "getAllMeasurements",
+        tags = ["Measurement"],
+        path = "/api/measurements",
+        method = HttpMethod.GET,
+        responses = [OpenApiResponse("200", [OpenApiContent(Array<Measurement>::class)])]
+    )
+    fun getAllMeasurements(ctx: Context) {
+        val measurements = measurementDao.getAll()
+        if (measurements.size != 0) {
+            ctx.status(200)
+        }
+        else{
+            ctx.status(404)
+        }
+        ctx.json(measurements)
     }
 
     @OpenApi(
@@ -97,6 +116,22 @@ object HealthTrackerController {
     }
 
     @OpenApi(
+        summary = "Get measurement by ID",
+        operationId = "getMeasurementById",
+        tags = ["Measurement"],
+        path = "/api/measurements/{id}",
+        method = HttpMethod.GET,
+        pathParams = [OpenApiParam("id", Int::class, "The measurement ID")],
+        responses  = [OpenApiResponse("200", [OpenApiContent(User::class)])]
+    )
+    fun getMeasurementById(ctx: Context) {
+        val measurement = measurementDao.findById(ctx.pathParam("id").toInt())
+        if (measurement != null) {
+            ctx.json(measurement)
+        }
+    }
+
+    @OpenApi(
         summary = "Add User",
         operationId = "addUser",
         tags = ["User"],
@@ -127,6 +162,21 @@ object HealthTrackerController {
         val item: Item = jsonToObject(ctx.body())
         itemDao.save(item)
         ctx.json(item)
+    }
+
+    @OpenApi(
+        summary = "Add Measurement",
+        operationId = "addMeasurement",
+        tags = ["Measurement"],
+        path = "/api/measurements",
+        method = HttpMethod.POST,
+        pathParams = [OpenApiParam("id", Int::class, "The measurement ID")],
+        responses  = [OpenApiResponse("200")]
+    )
+    fun addMeasurement(ctx: Context) {
+        val measurement: Measurement = jsonToObject(ctx.body())
+        measurementDao.save(measurement)
+        ctx.json(measurement)
     }
 
     @OpenApi(
@@ -178,6 +228,19 @@ object HealthTrackerController {
             itemDao.delete(ctx.pathParam("id").toInt())
         }
 
+    @OpenApi(
+        summary = "Delete measurement by ID",
+        operationId = "deleteMeasurementById",
+        tags = ["Measurement"],
+        path = "/api/measurements/{id}",
+        method = HttpMethod.DELETE,
+        pathParams = [OpenApiParam("id", Int::class, "The measurement ID")],
+        responses = [OpenApiResponse("204")]
+    )
+    fun deleteMeasurement(ctx: Context) {
+        measurementDao.delete(ctx.pathParam("id").toInt())
+    }
+
         @OpenApi(
             summary = "Update user by ID",
             operationId = "updateUserById",
@@ -211,6 +274,22 @@ object HealthTrackerController {
                 item = item
             )
         }
+    @OpenApi(
+        summary = "Update measurement by ID",
+        operationId = "updateMeasurementById",
+        tags = ["Measurement"],
+        path = "/api/measurements/{id}",
+        method = HttpMethod.PATCH,
+        pathParams = [OpenApiParam("id", Int::class, "The measurement ID")],
+        responses = [OpenApiResponse("204")]
+    )
+    fun updateMeasurement(ctx: Context) {
+        val measurement: Measurement = jsonToObject(ctx.body())
+        measurementDao.update(
+            id = ctx.pathParam("id").toInt(),
+            measurement = measurement
+        )
+    }
 
         //--------------------------------------------------------------
         // ActivityDAOI specifics

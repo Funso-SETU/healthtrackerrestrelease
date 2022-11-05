@@ -1,9 +1,7 @@
 package ie.setu.domain.repository
 
 import ie.setu.domain.Item
-import ie.setu.domain.User
 import ie.setu.domain.db.Items
-import ie.setu.domain.db.Users
 import ie.setu.utils.mapToItem
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction

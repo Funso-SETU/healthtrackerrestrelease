@@ -10,10 +10,6 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import kong.unirest.HttpResponse
 import kong.unirest.JsonNode
 
-//More info: https://www.baeldung.com/jackson-object-mapper-tutorial
-//           https://www.baeldung.com/jackson-serialize-dates
-//           https://www.baeldung.com/kotlin/reified-functions
-//           https://www.baeldung.com/kotlin/generics
 
 inline fun <reified T: Any> jsonToObject(json: String) : T
         = jacksonObjectMapper()

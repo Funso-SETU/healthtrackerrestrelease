@@ -75,6 +75,16 @@ class JavalinConfig {
 
                 }
             }
+            path("/api/measurements") {
+                get(HealthTrackerController::getAllMeasurements)
+                post(HealthTrackerController::addMeasurement)
+                path("{id}") {
+                    get(HealthTrackerController::getMeasurementById)
+                    delete(HealthTrackerController::deleteMeasurement)
+                    patch(HealthTrackerController::updateMeasurement)
+
+                }
+            }
         }
     }
     private fun getConfiguredOpenApiPlugin() = OpenApiPlugin(

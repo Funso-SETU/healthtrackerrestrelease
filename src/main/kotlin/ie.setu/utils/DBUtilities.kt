@@ -2,9 +2,11 @@ package ie.setu.utils
 
 import ie.setu.domain.Activity
 import ie.setu.domain.Item
+import ie.setu.domain.Measurement
 import ie.setu.domain.User
 import ie.setu.domain.db.Activities
 import ie.setu.domain.db.Items
+import ie.setu.domain.db.Measurements
 import ie.setu.domain.db.Users
 import org.jetbrains.exposed.sql.ResultRow
 
@@ -30,4 +32,11 @@ fun mapToItem(it: ResultRow) = Item(
     dateadded = it[Items.dateadded],
     unitprice = it[Items.unitprice],
     userid = it[Items.userid]
+)
+fun mapToMeasurement(it: ResultRow) = Measurement(
+    id = it[Measurements.id],
+    chest = it[Measurements.chest],
+    waist = it[Measurements.waist],
+    dateadded = it[Measurements.dateadded],
+    userid = it[Measurements.userid]
 )
