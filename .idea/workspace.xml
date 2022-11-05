@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6649612-81e0-4e03-90ea-ac7854770b93" name="Changes" comment="Add this for my health tracker app after creating activity,activities, items classes and DB and deploying to Heroku">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/domain/db/Measurements.kt" afterDir="false" />
+    <list default="true" id="a6649612-81e0-4e03-90ea-ac7854770b93" name="Changes" comment="Add this for my health tracker app after creating activity,activities, items, measurements classes and DB and deploying to Heroku">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie.setu/config/JavalinConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/config/JavalinConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie.setu/controllers/HealthTrackerController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/controllers/HealthTrackerController.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie.setu/domain/repository/ItemDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/domain/repository/ItemDAO.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie.setu/utils/DBUtilities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/utils/DBUtilities.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie.setu/utils/JSONUtilities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/utils/JSONUtilities.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie.setu/domain/repository/MeasurementDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/domain/repository/MeasurementDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/ie/setu/controllers/HealthTrackerControllerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/controllers/HealthTrackerControllerTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/ie/setu/helpers/Fixtures.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/helpers/Fixtures.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +216,7 @@
       <workItem from="1666798390160" duration="18888000" />
       <workItem from="1667310727246" duration="2580000" />
       <workItem from="1667472408624" duration="34325000" />
-      <workItem from="1667596269305" duration="13290000" />
+      <workItem from="1667596269305" duration="21465000" />
     </task>
     <task id="LOCAL-00001" summary="ADD this for my health tracker app">
       <created>1665425266086</created>
@@ -374,7 +372,21 @@
       <option name="project" value="LOCAL" />
       <updated>1667653389606</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Add this for my health tracker app after creating activity,activities, items, measurements classes and DB and deploying to Heroku">
+      <created>1667660336104</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1667660336104</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Add this for my health tracker app after creating activity,activities, items, measurements classes and DB and deploying to Heroku">
+      <created>1667660355663</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1667660355663</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -411,7 +423,8 @@
     <MESSAGE value="Add this for my health tracker app after connecting heroku directly" />
     <MESSAGE value="Add this for my health tracker app after creating activity,activities classes and DB and deploying to Heroku" />
     <MESSAGE value="Add this for my health tracker app after creating activity,activities, items classes and DB and deploying to Heroku" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add this for my health tracker app after creating activity,activities, items classes and DB and deploying to Heroku" />
+    <MESSAGE value="Add this for my health tracker app after creating activity,activities, items, measurements classes and DB and deploying to Heroku" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add this for my health tracker app after creating activity,activities, items, measurements classes and DB and deploying to Heroku" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/healthtrackerrest$All_in_healthtrackerrest.ic" NAME="All in healthtrackerrest Coverage Results" MODIFIED="1666897644484" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

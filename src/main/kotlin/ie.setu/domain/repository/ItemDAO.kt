@@ -103,4 +103,8 @@ class ItemDAO {
             }
         }
     }
+
+    fun getAllItems(item: ArrayList<Item>): ArrayList<Item> {
+        return item
+    }
 }

@@ -1,6 +1,8 @@
 package ie.setu.controllers
 
 import ie.setu.config.DbConfig
+import ie.setu.domain.Item
+import ie.setu.domain.Measurement
 import ie.setu.domain.User
 import ie.setu.helpers.ServerContainer
 import ie.setu.helpers.*
@@ -30,6 +32,29 @@ class HealthTrackerControllerTest {
             val response = Unirest.get(origin + "/api/users/").asString()
             if (response.status == 200) {
                 val retrievedUsers: ArrayList<User> = jsonToObject(response.body.toString())
+                assertNotEquals(0, retrievedUsers.size)
+            }
+            else {
+                assertEquals(404, response.status)
+            }
+        }
+
+        @Test
+        fun `get all items from the database returns 200 or 404 response`() {
+            val response = Unirest.get(origin + "/api/items/").asString()
+            if (response.status == 200) {
+                val retrievedUsers: ArrayList<Item> = jsonToObject(response.body.toString())
+                assertNotEquals(0, retrievedUsers.size)
+            }
+            else {
+                assertEquals(404, response.status)
+            }
+        }
+        @Test
+        fun `get all measurements from the database returns 200 or 404 response`() {
+            val response = Unirest.get(origin + "/api/measurements/").asString()
+            if (response.status == 200) {
+                val retrievedUsers: ArrayList<Measurement> = jsonToObject(response.body.toString())
                 assertNotEquals(0, retrievedUsers.size)
             }
             else {
@@ -154,7 +179,7 @@ class HealthTrackerControllerTest {
         @Test
         fun `deleting a user when it exists, returns a 204 response`() {
 
-            //Arrange - add the user that we plan to do a delete on
+            //Arrange - add the user that we plan to delete on
             val addedResponse = addUser(validName, validEmail)
             val addedUser : User = jsonToObject(addedResponse.body.toString())
 

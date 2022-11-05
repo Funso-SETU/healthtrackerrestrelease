@@ -61,4 +61,8 @@ class MeasurementDAO {
             }
         }
     }
+
+    fun getAllMeasurements(measurements: ArrayList<Measurement>): ArrayList<Measurement> {
+        return measurements
+    }
 }
