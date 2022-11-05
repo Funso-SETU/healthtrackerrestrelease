@@ -64,7 +64,7 @@ class MeasurementDAOTest {
         @Test
         fun `updating existing measurement in table results in successful update`() {
             transaction {
-
+                val userDAO = populateUserTable()
                 val measurementDAO = populateMeasurementTable()
 
                 //Act & Assert

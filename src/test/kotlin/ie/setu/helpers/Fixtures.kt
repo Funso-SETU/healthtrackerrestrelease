@@ -64,6 +64,13 @@ fun populateActivityTable(): ActivityDAO {
 }
 
 fun populateItemTable(): ItemDAO {
+
+    SchemaUtils.create(Users)
+    val userDAO = UserDAO()
+    userDAO.save(users[0])
+    userDAO.save(users[1])
+    userDAO.save(users[2])
+
     SchemaUtils.create(Items)
     val itemDAO = ItemDAO()
     itemDAO.save(item.get(0))
@@ -73,10 +80,18 @@ fun populateItemTable(): ItemDAO {
 }
 
 fun populateMeasurementTable(): MeasurementDAO {
+
+    SchemaUtils.create(Users)
+    val userDAO = UserDAO()
+    userDAO.save(users[0])
+    userDAO.save(users[1])
+    userDAO.save(users[2])
+
     SchemaUtils.create(Measurements)
     val measurementDAO = MeasurementDAO()
     measurementDAO.save(measurements.get(0))
     measurementDAO.save(measurements.get(1))
     measurementDAO.save(measurements.get(2))
+
     return measurementDAO
 }

@@ -33,6 +33,7 @@ class ItemDAOTest {
         fun `multiple items added to table can be retrieved successfully`() {
             transaction {
                 //Arrange - create and populate tables with three items
+                val userDAO = populateUserTable()
                 val itemDAO = populateItemTable()
                 //Act & Assert
                 assertEquals(3, itemDAO.getAll().size)
