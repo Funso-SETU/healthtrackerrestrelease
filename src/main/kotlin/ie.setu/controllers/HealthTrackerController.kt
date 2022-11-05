@@ -124,11 +124,7 @@ object HealthTrackerController {
         responses  = [OpenApiResponse("200")]
     )
     fun addItem(ctx: Context) {
-        //mapper handles the serialisation of Joda date into a String.
-        val mapper = jacksonObjectMapper()
-            .registerModule(JodaModule())
-            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
-        val item = mapper.readValue<Item>(ctx.body())
+        val item: Item = jsonToObject(ctx.body())
         itemDao.save(item)
         ctx.json(item)
     }
@@ -162,114 +158,115 @@ object HealthTrackerController {
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
         responses  = [OpenApiResponse("204")]
     )
-    fun deleteUser(ctx: Context){
+    fun deleteUser(ctx: Context) {
         if (userDao.delete(ctx.pathParam("user-id").toInt()) != 0)
-            ctx.status(204)   
-	 else
-	    ctx.status(404)
-
-
-    @OpenApi(
-        summary = "Delete item by ID",
-        operationId = "deleteItemById",
-        tags = ["User"],
-        path = "/api/items/{id}",
-        method = HttpMethod.DELETE,
-        pathParams = [OpenApiParam("id", Int::class, "The item ID")],
-        responses  = [OpenApiResponse("204")]
-    )
-    fun deleteItem(ctx: Context){
-        itemDao.delete(ctx.pathParam("id").toInt())
+            ctx.status(204)
+        else
+            ctx.status(404)
     }
 
-    @OpenApi(
-        summary = "Update user by ID",
-        operationId = "updateUserById",
-        tags = ["User"],
-        path = "/api/users/{user-id}",
-        method = HttpMethod.PATCH,
-        pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
-        responses  = [OpenApiResponse("204")]
-    )
-    fun updateUser(ctx: Context){
-    val foundUser : User = jsonToObject(ctx.body())
-    if ((userDao.update(id = ctx.pathParam("user-id").toInt(), user=foundUser)) != 0)
-     ctx.status(204)
-    else
-     ctx.status(404)
-    }
+        @OpenApi(
+            summary = "Delete item by ID",
+            operationId = "deleteItemById",
+            tags = ["User"],
+            path = "/api/items/{id}",
+            method = HttpMethod.DELETE,
+            pathParams = [OpenApiParam("id", Int::class, "The item ID")],
+            responses = [OpenApiResponse("204")]
+        )
+        fun deleteItem(ctx: Context) {
+            itemDao.delete(ctx.pathParam("id").toInt())
+        }
 
-    @OpenApi(
-        summary = "Update item by ID",
-        operationId = "updateItemById",
-        tags = ["Item"],
-        path = "/api/items/{id}",
-        method = HttpMethod.PATCH,
-        pathParams = [OpenApiParam("id", Int::class, "The item ID")],
-        responses  = [OpenApiResponse("204")]
-    )
-    fun updateItem(ctx: Context){
-        val mapper = jacksonObjectMapper()
-        val itemUpdates = mapper.readValue<Item>(ctx.body())
-        itemDao.update(
-            id = ctx.pathParam("id").toInt(),
-            item=itemUpdates)
-    }
+        @OpenApi(
+            summary = "Update user by ID",
+            operationId = "updateUserById",
+            tags = ["User"],
+            path = "/api/users/{user-id}",
+            method = HttpMethod.PATCH,
+            pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
+            responses = [OpenApiResponse("204")]
+        )
+        fun updateUser(ctx: Context) {
+            val foundUser: User = jsonToObject(ctx.body())
+            if ((userDao.update(id = ctx.pathParam("user-id").toInt(), user = foundUser)) != 0)
+                ctx.status(204)
+            else
+                ctx.status(404)
+        }
 
-    //--------------------------------------------------------------
-    // ActivityDAOI specifics
-    //-------------------------------------------------------------
+        @OpenApi(
+            summary = "Update item by ID",
+            operationId = "updateItemById",
+            tags = ["Item"],
+            path = "/api/items/{id}",
+            method = HttpMethod.PATCH,
+            pathParams = [OpenApiParam("id", Int::class, "The item ID")],
+            responses = [OpenApiResponse("204")]
+        )
+        fun updateItem(ctx: Context) {
+            val item: Item = jsonToObject(ctx.body())
+            itemDao.update(
+                id = ctx.pathParam("id").toInt(),
+                item = item
+            )
+        }
 
-    fun getAllActivities(ctx: Context) {
-        //mapper handles the deserialization of Joda date into a String.
-        val mapper = jacksonObjectMapper()
-            .registerModule(JodaModule())
-            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
-        ctx.json(mapper.writeValueAsString( activityDAO.getAll() ))
-    }
+        //--------------------------------------------------------------
+        // ActivityDAOI specifics
+        //-------------------------------------------------------------
 
-    fun getActivitiesByUserId(ctx: Context) {
-        if (userDao.findById(ctx.pathParam("user-id").toInt()) != null) {
-            val activities = activityDAO.findByUserId(ctx.pathParam("user-id").toInt())
-            if (activities.isNotEmpty()) {
-                //mapper handles the deserialization of Joda date into a String.
+        fun getAllActivities(ctx: Context) {
+            //mapper handles the deserialization of Joda date into a String.
+            val mapper = jacksonObjectMapper()
+                .registerModule(JodaModule())
+                .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+            ctx.json(mapper.writeValueAsString(activityDAO.getAll()))
+        }
+
+        fun getActivitiesByUserId(ctx: Context) {
+            if (userDao.findById(ctx.pathParam("user-id").toInt()) != null) {
+                val activities = activityDAO.findByUserId(ctx.pathParam("user-id").toInt())
+                if (activities.isNotEmpty()) {
+                    //mapper handles the deserialization of Joda date into a String.
+                    val mapper = jacksonObjectMapper()
+                        .registerModule(JodaModule())
+                        .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+                    ctx.json(mapper.writeValueAsString(activities))
+                }
+            }
+        }
+
+        fun addActivity(ctx: Context) {
+            //mapper handles the serialisation of Joda date into a String.
+            val activity: Activity = jsonToObject(ctx.body())
+            activityDAO.save(activity)
+            ctx.json(activity)
+        }
+
+        fun getActivitiesByActivityId(ctx: Context) {
+            val activity = activityDAO.findByActivityId((ctx.pathParam("activity-id").toInt()))
+            if (activity != null) {
                 val mapper = jacksonObjectMapper()
                     .registerModule(JodaModule())
                     .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
-                ctx.json(mapper.writeValueAsString(activities))
+                ctx.json(mapper.writeValueAsString(activity))
             }
         }
-    }
 
-    fun addActivity(ctx: Context) {
-        //mapper handles the serialisation of Joda date into a String.
-        val activity : Activity = jsonToObject(ctx.body())
-        activityDAO.save(activity)
-        ctx.json(activity)
-    }
+        fun deleteActivityByActivityId(ctx: Context) {
+            activityDAO.deleteByActivityId(ctx.pathParam("activity-id").toInt())
+        }
 
-    fun getActivitiesByActivityId(ctx: Context) {
-        val activity = activityDAO.findByActivityId((ctx.pathParam("activity-id").toInt()))
-        if (activity != null){
-        val mapper = jacksonObjectMapper()
-            .registerModule(JodaModule())
-            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
-            ctx.json(mapper.writeValueAsString(activity))
+        fun deleteActivityByUserId(ctx: Context) {
+            activityDAO.deleteByUserId(ctx.pathParam("user-id").toInt())
+        }
+
+        fun updateActivity(ctx: Context) {
+            val activity: Activity = jsonToObject(ctx.body())
+            activityDAO.updateByActivityId(
+                activityId = ctx.pathParam("activity-id").toInt(),
+                activityDTO = activity
+            )
         }
     }
-
-    fun deleteActivityByActivityId(ctx: Context){
-        activityDAO.deleteByActivityId(ctx.pathParam("activity-id").toInt())
-    }
-
-    fun deleteActivityByUserId(ctx: Context){
-        activityDAO.deleteByUserId(ctx.pathParam("user-id").toInt())
-    }
-
-    fun updateActivity(ctx: Context){
-        val activity : Activity = jsonToObject(ctx.body())
-        activityDAO.updateByActivityId(
-            activityId = ctx.pathParam("activity-id").toInt(),
-            activityDTO=activity)
-    }
-}
