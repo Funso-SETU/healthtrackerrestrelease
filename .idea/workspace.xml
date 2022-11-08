@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6649612-81e0-4e03-90ea-ac7854770b93" name="Changes" comment="Add this for my health tracker app after creating activity,activities, items, measurements classes and DB and deploying to Heroku" />
+    <list default="true" id="a6649612-81e0-4e03-90ea-ac7854770b93" name="Changes" comment="Add this for my health tracker app after creating activity,activities, items, measurements classes and DB and deploying to Heroku">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vue/components/app-layout.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vue/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vue/views/home-page.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vue/views/user-activity-overview.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vue/views/user-overview.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/vue/views/user-profile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie.setu/config/JavalinConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie.setu/config/JavalinConfig.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,11 +28,15 @@
       <file url="file://$PROJECT_DIR$/src/main/kotlin/ie.setu/config/JavalinConfig.kt" />
     </disable_hints>
   </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="C:\report" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin File" />
         <option value="Kotlin Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -57,15 +71,17 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/dev/SETU/healthtrackerrest/src/main/kotlin/ie.setu/domain/repository&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/report&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -75,7 +91,7 @@
       <recent name="C:\dev\SETU\healthtrackerrest\src\main\kotlin\ie.setu\domain\db" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in healthtrackerrest">
+  <component name="RunManager" selected="Kotlin.AppKt">
     <configuration name="All in healthtrackerrest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="healthtrackerrest" />
       <option name="PACKAGE_NAME" value="" />
@@ -183,10 +199,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.AppKt" />
         <item itemvalue="JUnit.All in healthtrackerrest" />
         <item itemvalue="JUnit.MeasurementDAOTest" />
         <item itemvalue="JUnit.ItemDAOTest" />
-        <item itemvalue="Kotlin.AppKt" />
         <item itemvalue="JUnit.HealthTrackerControllerTest (3)" />
       </list>
     </recent_temporary>
@@ -207,7 +223,8 @@
       <workItem from="1666798390160" duration="18888000" />
       <workItem from="1667310727246" duration="2580000" />
       <workItem from="1667472408624" duration="34325000" />
-      <workItem from="1667596269305" duration="25053000" />
+      <workItem from="1667596269305" duration="28694000" />
+      <workItem from="1667905672210" duration="5973000" />
     </task>
     <task id="LOCAL-00001" summary="ADD this for my health tracker app">
       <created>1665425266086</created>
@@ -398,7 +415,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667679050258</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Add this for my health tracker app after creating activity,activities, items, measurements classes and DB and deploying to Heroku">
+      <created>1667679692083</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1667679692083</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
