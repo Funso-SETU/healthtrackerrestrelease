@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a6649612-81e0-4e03-90ea-ac7854770b93" name="Changes" comment="Add this for my health tracker app after creating some of the vue components">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/vue/views/user-overview.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/vue/views/user-overview.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/vue/views/user-profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/vue/views/user-profile.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +83,7 @@
       <recent name="C:\dev\SETU\healthtrackerrest\src\main\kotlin\ie.setu\domain\db" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.AppKt">
+  <component name="RunManager" selected="Maven.deploy-heroku">
     <configuration name="All in healthtrackerrest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="healthtrackerrest" />
       <option name="PACKAGE_NAME" value="" />
@@ -219,7 +217,7 @@
       <workItem from="1667472408624" duration="34325000" />
       <workItem from="1667596269305" duration="28694000" />
       <workItem from="1667905672210" duration="8033000" />
-      <workItem from="1668509303287" duration="5587000" />
+      <workItem from="1668509303287" duration="6319000" />
     </task>
     <task id="LOCAL-00001" summary="ADD this for my health tracker app">
       <created>1665425266086</created>
@@ -431,7 +429,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668511588137</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Add this for my health tracker app after creating some of the vue components">
+      <created>1668515325344</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1668515325344</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
